@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../build/ols-tabbed-term-treeview.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            let OLSTabbedTermTreeView = require("ols-tabbed-term-treeview");
+
+            let olsTabbedTermTreeView1 = new OLSTabbedTermTreeView("TestIRI_1", "TestOntology_1");
+            let olsTabbedTermTreeView2 = new OLSTabbedTermTreeView("TestIRI_2", "TestOntology_2");
+
+            console.log(olsTabbedTermTreeView1.toString());
+            console.log(olsTabbedTermTreeView2.toString());
+            console.log("olsTabbedTermTreeView1 = ", olsTabbedTermTreeView1);
+            console.log("olsTabbedTermTreeView2 = ", olsTabbedTermTreeView2);
+
+
+        });
+    </script>
+</head>
+
+<body>
+<div><h2>Test</h2></div>
+
+
+
+</body>
+</html>

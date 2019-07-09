@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/jstree.min.js"></script>
+    <link rel="stylesheet" href="./css/themes/proton/style.css" type="text/css" media="screen" />
+
+    <script type="text/javascript" src="../build/ols-tabbed-term-treeview.js"></script>
+
+    <script type="text/javascript">
+        var olsTabbedTermTreeView;
+        $(document).ready(function() {
+
+            var OLSTabbedTermTreeView = require("ols-tabbed-term-treeview");
+
+            olsTabbedTermTreeView = new OLSTabbedTermTreeView("http://localhost:8080/ols-boot/", "duo", "#term-tree",
+                "#property-tree", "#individual-tree", true, "All", true);
+
+            console.log("olsTabbedTermTreeView = ", olsTabbedTermTreeView);
+            olsTabbedTermTreeView.draw();
+        });
+    </script>
+</head>
+
+    <body>
+    <div class="btn-group btn-group-vertical" style="float: right;padding-top:5px;">
+        <input type="radio" id="ontology_view_selection_id" name="ontology_view_selection" value="All" checked="true"
+               onclick="olsTabbedTermTreeView.toggleOntologyView(this)">All terms</input><br/>
+        <input type="radio" id="ontology_view_selection_id" name="ontology_view_selection" value="Preferred roots"
+               onclick="olsTabbedTermTreeView.toggleOntologyView(this)">Preferred root terms</input>
+    </div>
+    <div vocab="http://schema.org/" typeof="CreativeWork" id="content" role="main" class="grid_24 clearfix">
+        <div class="grid_24 clearfix">
+            <div class="grid_14 alpha">
+
+                <ul  class="nav nav-tabs">
+                    <li role="presentation" class="active"><a id="tree-link" class="icon icon-functional" data-icon="h" data-toggle="tab" href="#term-tree-tab">Browse Terms</a></li>
+                    <li role="presentation"><a id="property-link" data-toggle="tab" class="icon icon-functional" data-icon="h"  href="#property-tree-tab">Browse Properties</a></li>
+                    <li role="presentation"><a id="individual-link" data-toggle="tab" class="icon icon-functional" data-icon="h"  href="#individual-tree-tab">Browse Individuals</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="term-tree-tab">
+                        <h1>Terms</h1>
+
+                        <div id="term-tree">
+                        </div>
+
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane fade" id="property-tree-tab">
+                        <h1>Properties</h1>
+                        <div id="property-tree">
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane fade" id="individual-tree-tab">
+                        <h1>Individuals</h1>
+                        <div id="individual-tree">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

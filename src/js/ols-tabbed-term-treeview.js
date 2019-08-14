@@ -5,20 +5,20 @@ $.jstree.defaults.core.expand_selected_onload = true;
 
 var OLSTermTypeTreeView = require("ols-term-type-treeview");
 
-function OLSTabbedTermTreeView(olsIRI, ontology, termsDiv, propertiesDiv, individualsDiv, showSiblings, viewModeElmId, saveState) {
-    this.showSiblings = showSiblings;
-    this.viewModeElmId = viewModeElmId;
+function OLSTabbedTermTreeView(olsIRI, ontology, termsDiv, propertiesDiv, individualsDiv, siblingsElm, viewModeElm, saveState) {
+    this.siblingsElm = siblingsElm;
+    this.viewModeElm = viewModeElm;
     this.saveState = saveState;
     this.termsTree = undefined;
     this.propertiesTree = undefined;
     this.individualsTree = undefined;
 
     if (termsDiv != undefined && termsDiv != "") {
-        this.termsTree = new OLSTermTypeTreeView(olsIRI, ontology, termsDiv, "", "terms", showSiblings, viewModeElmId,
+        this.termsTree = new OLSTermTypeTreeView(olsIRI, ontology, termsDiv, "", "terms", siblingsElm, viewModeElm,
             saveState);
     }
     if (propertiesDiv != undefined && propertiesDiv != "") {
-        this.propertiesTree = new OLSTermTypeTreeView(olsIRI, ontology, propertiesDiv, "", "property", showSiblings, viewModeElmId,
+        this.propertiesTree = new OLSTermTypeTreeView(olsIRI, ontology, propertiesDiv, "", "property", siblingsElm, viewModeElm,
             saveState);
     }
     // if (individualsDiv != undefined && individualsDiv != "") {
@@ -27,27 +27,27 @@ function OLSTabbedTermTreeView(olsIRI, ontology, termsDiv, propertiesDiv, indivi
     // }
 }
 
-OLSTabbedTermTreeView.prototype.draw =  function () {
+OLSTabbedTermTreeView.prototype.draw =  function (showSiblings, viewMode) {
     if (this.termsTree != undefined) {
-        this.termsTree.draw();
+        this.termsTree.draw(showSiblings, viewMode);
     }
 
     if (this.propertiesTree != undefined) {
-        this.propertiesTree.draw();
+        this.propertiesTree.draw(showSiblings, viewMode);
     }
 
     if (this.individualsTree != undefined) {
-        this.individualsTree.draw();
+        this.individualsTree.draw(showSiblings, viewMode);
     }
 }
 
-OLSTabbedTermTreeView.prototype.toggleOntologyView =  function (elm) {
+OLSTabbedTermTreeView.prototype.toggleOntologyView =  function () {
     if (this.termsTree != undefined) {
-        this.termsTree.toggleOntologyView(elm);
+        this.termsTree.toggleOntologyView();
     }
 
     if (this.propertiesTree != undefined) {
-        this.propertiesTree.toggleOntologyView(elm);
+        this.propertiesTree.toggleOntologyView();
     }
 
     if (this.individualsTree != undefined) {
@@ -56,17 +56,17 @@ OLSTabbedTermTreeView.prototype.toggleOntologyView =  function (elm) {
 }
 
 
-OLSTabbedTermTreeView.prototype.toggleSiblings =  function (elm) {
+OLSTabbedTermTreeView.prototype.toggleSiblings =  function () {
     if (this.termsTree != undefined) {
-        this.termsTree.toggleSiblings(elm);
+        this.termsTree.toggleSiblings();
     }
 
     if (this.propertiesTree != undefined) {
-        this.propertiesTree.toggleSiblings(elm);
+        this.propertiesTree.toggleSiblings();
     }
 
     if (this.individualsTree != undefined) {
-        this.individualsTree.toggleSiblings(elm);
+        this.individualsTree.toggleSiblings();
     }
 }
 
